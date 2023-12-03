@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.1'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:3.6.0'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "failed", "passed", "skipped", "standardError","standardOut", "started"
+    }
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+application {
+    mainClass = 'org.example.Main' //The main class to be run
+}
+
+run {
+    standardInput = System.in //When doing gradle run, it will ask for input (for use in logins and such)
+}
+
+jar {
+    manifest {
+        attributes 'main-Class': 'org.example.Main'
+    }
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.required = false
+        csv.required = false
+    }
+}

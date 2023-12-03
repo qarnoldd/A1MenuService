@@ -1,0 +1,7 @@
+Date: 21-9-2023 11:33:51
+Order Number: 0
+Name: liam
+Items: 
+Deluxe Cheese Burger $10.0 x 2
+Total: $20.0
+=------------------------------------------------=
